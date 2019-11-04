@@ -1,0 +1,29 @@
+
+    <td>
+        {{ punto }}
+    </td>
+    <td>
+        {{ ejecutivoAsignadoNombre }}
+    </td>
+    <td>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        
+            <button  class="btn btn-outline-warning" 
+                    [ngClass]="puntoEnContingencia ? 'active': ''" 
+                    (click)="onOptionButtonClicked(1)"
+                    type="button"> Si
+            </button>
+            
+            <button class="btn btn-outline-primary" 
+                    [ngClass]="puntoEnContingencia === false ? 'active': ''"
+                    (click)="onOptionButtonClicked(0)"
+                    type="button"> No
+            </button>
+        </div>
+    </td>
+    <td>
+        <textarea class="form-control" [disabled]="!puntoEnContingencia" [(ngModel)]="comentarios"></textarea>
+    </td>
+    <td>
+        <button type="button" (click)="onOkButtonClicked($event)" class="btn btn-outline-success">Ok</button>
+    </td>
