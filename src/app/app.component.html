@@ -1,17 +1,38 @@
-<table class="table table-stripped">
-  <thead>
-    <tr>
-      <th>Empresa / Pto. Atecnión</th>
-      <th>Ejecutivo Asignado</th>
-      <th>Punto en Contingencia</th>
-      <th>Observación</th>
-      <th></th>
-    </tr>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="filter1">Búsqueda</label>
+        <input type="text" class="form-control" placeholder="Ingresa Rut o Nombre Empresa, Punto" [(ngModel)]="textoBusqueda" (keyup)="busquedaControlChanged($event)">
+        
+      </div>
+    </div>
+  </div>
+  <br/>
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Empresa / Pto. Atecnión</th>
+        <th>Punto en Contingencia</th>
+        <th>Observación</th>
+        <th></th>
+      </tr>
+      
+    </thead>
+    <tbody>
+        <tr app-alerta-table-row 
+        *ngFor="let reg of alertas"
+        [reg-id]="reg.id" 
+        [punto-id]="reg.idPunto" 
+        [punto]="reg.nombrePunto" 
+        [empresa-rut]="reg.rutEmpresa"
+        [contingencia]="reg.puntoEnContingencia" 
+        [comentarios]="reg.comentarios" 
+        (okButtonClicked)="okButtonClicked($event)"></tr>
     
-  </thead>
-  <tbody>
-      <tr app-alerta-table-row *ngFor="let reg of alertas" [punto]="reg.nombrePunto" [ejecutivo-nombre]="reg.nombreEjecutivo" [contingencia]="reg.puntoEnContingencia" [comentarios]="reg.comentarios" ([okButtonClicked])="okButtonClicked($event)"></tr>
-  
-  </tbody>
-  
-</table>
+    </tbody>
+    
+  </table>
+</div>

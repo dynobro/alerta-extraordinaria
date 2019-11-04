@@ -4,6 +4,8 @@ export interface ButtonOkClickedEventEmitter {
   puntoId: number;
   puntoEnContingencia: boolean;
   comentarios: string;
+  rutCompania: string;
+  id: number;
 } 
 
 
@@ -16,16 +18,16 @@ export class AlertaTableRowComponent implements OnInit {
 
   @Input() punto: string;
   @Input('punto-id') puntoId: number;
-  @Input('ejecutivo-nombre') ejecutivoAsignadoNombre: string;
-  @Input('ejecutivo-rut') ejecutivoAsignadoRut: string;
+  @Input('empresa-rut') empresaRut: string;
   @Input('contingencia') puntoEnContingencia: boolean;
+  @Input('reg-id') id: number;
   @Input() comentarios: string;
   @Output() okButtonClicked: EventEmitter<ButtonOkClickedEventEmitter> = new EventEmitter<ButtonOkClickedEventEmitter>();
   
   constructor() { }
 
   ngOnInit() {
-    console.log({puntoEnContingencia: this.puntoEnContingencia})
+    //console.log({puntoEnContingencia: this.puntoEnContingencia})
   }
 
   onOptionButtonClicked(option: number){
@@ -38,11 +40,12 @@ export class AlertaTableRowComponent implements OnInit {
   }
 
   onOkButtonClicked(event){
-    //console.log({event, puntoEnContingencia: this.puntoEnContingencia, comentarios: this.comentarios})
     this.okButtonClicked.emit({
       puntoId: this.puntoId, 
       comentarios:this.comentarios,
-      puntoEnContingencia: this.puntoEnContingencia
+      puntoEnContingencia: this.puntoEnContingencia,
+      rutCompania: this.empresaRut,
+      id: this.id,
     });
   }
 }
